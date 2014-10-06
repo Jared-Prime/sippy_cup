@@ -209,7 +209,7 @@ Each parameter has an impact on the test, and may either be changed once the XML
   <dd>By default, SippyCup will show SIPp's command line output while running a scenario. Set this parameter to `false` to hide full command line output</dd>
 
   <dt>summary_report_file</dt>
-  <dd>Write a summary of the SIPp run to the specified file. This summary is the output from the SIPp `-trace_screen` command. Requires a development build of SIPp; see https://github.com/SIPp/sipp/pull/106.</dd>
+  <dd>Write a summary of the SIPp run to the specified file. This summary is the output from the SIPp `-trace_screen` command. NOTE: Requires a development build of SIPp; see https://github.com/SIPp/sipp/pull/106.</dd>
 
   <dt>errors_report_file</dt>
   <dd>Record SIPp's errors to the specified file. This report is the output from the SIPp `-trace_err` command.</dd>
@@ -233,7 +233,10 @@ Each parameter has an impact on the test, and may either be changed once the XML
   <dd>The rate at which new calls should be created. Note that SIPp will automatically adjust this downward to stay at or beneath the maximum number of concurrent calls (`concurrent_max`). Default: 10</dt>
 
   <dt>calls_per_second_incr</dt>
-  <dd>When used with `calls_per_second_max`, tells SIPp the amount by which calls-per-second should be incremented. CPS rate is adjusted each `stats_interval`. Default: 1.</dd>
+  <dd>When used with `calls_per_second_max`, tells SIPp the amount by which calls-per-second should be incremented. CPS rate is adjusted each `calls_per_second_interval`. Default: 1.</dd>
+
+  <dt>calls_per_second_interval</dt>
+  <dd>When used with `calls_per_second_max`, tells SIPp the time interval (in seconds) by which calls-per-second should be incremented. Default: Unset; SIPp's default (60s). NOTE: Requires a development build of SIPp; see https://github.com/SIPp/sipp/pull/107</dd>
 
   <dt>calls_per_second_max</dt>
   <dd>The maximum rate of calls-per-second. If unset, the CPS rate will remain at the level set by `calls_per_second`.</dd>
