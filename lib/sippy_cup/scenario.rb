@@ -629,11 +629,11 @@ Content-Length: 0
     #
     # Create partition table to examine individual call lengths
     #
-    # @param [Integer] min An Integer specifying the minimum time in milliseconds for the table
-    # @param [Integer] max An Integer specifying the maximum time in milliseconds for the table
-    # @param [Integer] interval An Integer specifying the interval in milliseconds for the table
+    # @param [String] min An value specifying the minimum time in milliseconds for the table
+    # @param [String] max An value specifying the maximum time in milliseconds for the table
+    # @param [String] interval An value specifying the interval in milliseconds for the table
     def partition_table(min, max, interval)
-      range = Range.new(min, max).step interval
+      range = Range.new(min.to_i, max.to_i).step interval.to_i
       partition_table = Nokogiri::XML::Node.new 'CallLengthRepartition', doc
       partition_table[:value] = range.inject{ |n,m| "#{n},#{m}"}
       scenario_node << partition_table
