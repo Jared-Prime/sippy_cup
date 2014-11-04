@@ -386,6 +386,13 @@ describe SippyCup::Scenario do
     end
   end
 
+  describe '#partition_table' do
+    it 'create a partition table' do
+      subject.partition_table(1, 10, 2)
+      scenario.to_xml.should match('<CallLengthRepartition value="1,3,5,7,9"/>')
+    end
+  end
+
   describe 'media-dependent operations' do
     let(:media) { double :media }
     before do

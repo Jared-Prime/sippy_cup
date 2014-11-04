@@ -627,6 +627,19 @@ Content-Length: 0
     end
 
     #
+    # Create partition table to examine individual call lengths
+    #
+    # @param [Integer] min An Integer specifying the minimum time in milliseconds for the table
+    # @param [Integer] max An Integer specifying the maximum time in milliseconds for the table
+    # @param [Integer] interval An Integer specifying the interval in milliseconds for the table
+    def partition_table(min, max, interval)
+      range = Range.new(min, max).step interval
+      partition_table = Nokogiri::XML::Node.new 'CallLengthRepartition', doc
+      partition_table[:value] = range.inject{ |n,m| "#{n},#{m}"}
+      scenario_node << partition_table
+    end
+
+    #
     # Dump the scenario to a SIPp XML string
     #
     # @return [String] the SIPp XML scenario
