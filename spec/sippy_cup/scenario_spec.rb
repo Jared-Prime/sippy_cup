@@ -386,10 +386,17 @@ describe SippyCup::Scenario do
     end
   end
 
-  describe '#partition_table' do
+  describe '#call_length_repartition' do
     it 'create a partition table' do
-      subject.partition_table(1, 10, 2)
+      subject.call_length_repartition('1', '10', '2')
       scenario.to_xml.should match('<CallLengthRepartition value="1,3,5,7,9"/>')
+    end
+  end
+
+  describe '#response_time_repartition' do
+    it 'create a partition table' do
+      subject.response_time_repartition('1', '10', '2')
+      scenario.to_xml.should match('<ResponseTimeRepartition value="1,3,5,7,9"/>')
     end
   end
 
